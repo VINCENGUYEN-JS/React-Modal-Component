@@ -1,27 +1,15 @@
-import React, { useState, useRef, useEffect } from "react";
-import ReactDOM from "react-dom";
-import logo from "./logo.svg";
-import "./App.css";
-import Modal from "./Modal";
+import React, { useState } from "react";
+import Modal from "./Modal.tsx";
 
-function App() {
-  const ModalRef = useRef();
-  const openModal = () => {
-    ModalRef.current.open();
-  };
-  const closeModal = () => {
-    ModalRef.current.close();
-  };
+const App = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="App">
-      <button onClick={openModal}>Click</button>
-      <Modal ref={ModalRef}>
-        <h1>Modal Header</h1>
-        <p>Hi Vince , have a great day !</p>
-        <button onClick={closeModal}>Close Modal</button>
+    <main>
+      <button onClick={setIsOpen}>Show modal</button>
+      <Modal isOpen={isOpen} title="My Modal" onClose={() => setIsOpen(false)}>
+        <p>This is my modal body</p>
       </Modal>
-    </div>
+    </main>
   );
-}
-
+};
 export default App;
