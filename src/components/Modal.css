@@ -8,15 +8,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
+  /* opacity: 0;
   transition: all 0.3s ease-in-out;
-  pointer-events: none;
+  pointer-events: none; */
 }
 
-.modal.show {
+/* .modal.show {
   opacity: 1;
   pointer-events: visible;
-}
+} */
 
 .modal-content {
   width: 500px;

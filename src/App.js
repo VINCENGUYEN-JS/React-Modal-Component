@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Modal from "./Modal.tsx";
+import Modal from "./components/Modal.tsx";
+// import "App.css";
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
