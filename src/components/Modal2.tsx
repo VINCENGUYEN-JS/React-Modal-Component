@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useRef } from "react";
 import ReactDOM from "react-dom";
 import { CSSTransition } from "react-transition-group";
 import "./Modal.css";
@@ -11,10 +11,25 @@ type ModalProps = {
 };
 
 const Modal = (props: ModalProps) => {
+  const modalOverlayRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+
   const closeOnEscapeKeyDown = useCallback((e) => {
     if ((e.charCode || e.keyCode) === 27) {
       props.onClose();
     }
+  }, []);
+
+  const onClickOutSide = (e: MouseEvent) => {
+    const element = e.target;
+    if (modalRef.current && !modalRef.current.contains(element as Node)) {
+      props.onClose();
+    }
+  };
+
+  useEffect(() => {
+    modalRef.current && modalRef.current.focus();
+    document.body.addEventListener("click", onClickOutSide);
   }, []);
 
   useEffect(() => {
@@ -24,16 +39,18 @@ const Modal = (props: ModalProps) => {
     };
   }, [closeOnEscapeKeyDown]);
 
-  // const modalClassName = ["modal", props.isOpen ? "show" : ""].join(" ");
-
   return ReactDOM.createPortal(
     <CSSTransition
       in={props.isOpen}
       unmountOnExit
-      timeout={{ enter: 0, exit: 10 }}
+      timeout={{ enter: 0, exit: 300 }}
     >
-      <div className="modal" onClick={props.onClose}>
-        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <div className="modal" ref={modalOverlayRef} onClick={props.onClose}>
+        <div
+          className="modal-content"
+          ref={modalRef}
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="modal-header">
             <h4 className="modal-title">{props.title}</h4>
           </div>
