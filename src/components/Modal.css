@@ -19,6 +19,7 @@
 } */
 
 .modal-content {
+  position: relative;
   width: 500px;
   background-color: #fff;
 }
@@ -29,7 +30,19 @@
 
 .modal-header,
 .modal-footer {
+  padding: 10px 16px;
+}
+
+.modal-footer {
+  text-align: right;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
   padding: 10px;
+  cursor: pointer;
 }
 
 .modal-body {

@@ -8,18 +8,17 @@ const App = () => {
   return (
     <main>
       <button onClick={setIsOpen}>Show modal</button>
-      <Modal isOpen={isOpen} title="My Modal" onClose={() => setIsOpen(false)}>
-        <p>Use event bubbling to detect event click outside</p>
-      </Modal>
-      <br />
-      <button onClick={setIsOpen}>Show modal 2</button>
-      <Modal2
+      <Modal
         isOpen={isOpen}
-        title="My Modal 2"
+        title="My Modal"
         onClose={() => setIsOpen(false)}
+        okText="Ok"
+        cancelText="Cancel"
       >
-        <p>Use ref to detect event click outside</p>
-      </Modal2>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Modal>
     </main>
   );
 };

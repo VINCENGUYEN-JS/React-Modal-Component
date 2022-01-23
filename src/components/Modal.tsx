@@ -1,16 +1,22 @@
 import React, { useEffect, useCallback } from "react";
 import ReactDOM from "react-dom";
 import { CSSTransition } from "react-transition-group";
+
+import Content from "./Content";
 import "./Modal.css";
 
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
   title: string;
+  okText?: React.ReactNode;
+  cancelText?: React.ReactNode;
   children: React.ReactNode;
+  footer?: React.ReactNode;
 };
 
 const Modal = (props: ModalProps) => {
+  const prefixCls = Modal.displayName;
   const closeOnEscapeKeyDown = useCallback((e) => {
     if ((e.charCode || e.keyCode) === 27) {
       props.onClose();
@@ -24,29 +30,18 @@ const Modal = (props: ModalProps) => {
     };
   }, [closeOnEscapeKeyDown]);
 
-  // const modalClassName = ["modal", props.isOpen ? "show" : ""].join(" ");
-
   return ReactDOM.createPortal(
     <CSSTransition
       in={props.isOpen}
       unmountOnExit
       timeout={{ enter: 0, exit: 10 }}
     >
-      <div className="modal" onClick={props.onClose}>
-        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-          <div className="modal-header">
-            <h4 className="modal-title">{props.title}</h4>
-          </div>
-          <div className="modal-body">{props.children}</div>
-          <div className="modal-footer">
-            <button className="button" onClick={props.onClose}>
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
+      <Content {...props} closable={true} prefixCls={prefixCls} />
     </CSSTransition>,
     document.getElementById("root")!
   );
 };
+
+Modal.displayName = "modal";
+
 export default Modal;
