@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
 import Content from "./Content";
-import "./Modal.css";
+import "./Modal.less";
 
 type ModalProps = {
   isOpen: boolean;

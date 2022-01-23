@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useRef } from "react";
 import ReactDOM from "react-dom";
 import { CSSTransition } from "react-transition-group";
-import "./Modal.css";
+import "./Modal.less";
 
 type ModalProps = {
   isOpen: boolean;

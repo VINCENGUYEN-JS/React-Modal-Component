@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import Modal from "./components/Modal.tsx";
-import Modal2 from "./components/Modal2.tsx";
+
+import Button from "./components/Button/Button.tsx";
+import Modal from "./components/Modal/Modal.tsx";
+import Modal2 from "./components/Modal/Modal2.tsx";
 import "./App.css";
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <main>
-      <button onClick={setIsOpen}>Show modal</button>
+      <Button onClick={setIsOpen}>Show modal</Button>
       <Modal
         isOpen={isOpen}
         title="My Modal"
