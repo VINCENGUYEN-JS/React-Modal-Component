@@ -9,7 +9,7 @@ const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <main>
-      <Button onClick={setIsOpen}>Show modal</Button>
+      <Button onClick={() => setIsOpen(true)}>Show modal</Button>
       <Modal
         isOpen={isOpen}
         title="My Modal"
